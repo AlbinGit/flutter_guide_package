@@ -94,6 +94,7 @@ class _GuidePageState extends State<GuideSplashPage>
               eHeight: size1.height,
               tipsAlign: pointBean.tipsAlign,
               tipsWidth: pointBean.tipsWidth,
+              tipsSafePadding: pointBean.tipsSafePadding,
               tipsBackGroundColor: pointBean.tipsBackGroundColor,
               tipsText: pointBean.tipsText,
               tipsTextColor: pointBean.tipsTextColor,
@@ -225,6 +226,7 @@ class _GuidePageState extends State<GuideSplashPage>
         nextTextSize: tipsPoint.nextTextSize,
         tipsAlign: tipsPoint.tipsAlign,
         tipsWidth: tipsPoint.tipsWidth,
+        tipsSafePadding: tipsPoint.tipsSafePadding,
         clickLiser: liserClickCallback,
       ),
     );
