@@ -1,7 +1,7 @@
 name: flutter_guide_package
 description: 功能引导
-version: 0.0.1
-homepage:
+version: 0.0.2
+homepage: https://github.com/AlbinGit/flutter_guide_package.git
 
 
 environment:
