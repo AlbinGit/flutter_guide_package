@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+
 import 'guide_logs.dart';
 import 'guide_model.dart';
 import 'guide_painter.dart';
@@ -61,7 +62,7 @@ class _GuidePageState extends State<GuideSplashPage>
 
   void controllerInitData() {
     if ((widget.globalKeyPointList == null ||
-            widget.globalKeyPointList.length == 0) &&
+        widget.globalKeyPointList.length == 0) &&
         (widget.TipsPointList == null || widget.TipsPointList.length == 0)) {
       widget.TipsPointList = [];
       widget.TipsPointList.add(TipsPoint(0, 0, tipsText: '--'));
@@ -94,6 +95,7 @@ class _GuidePageState extends State<GuideSplashPage>
               eHeight: size1.height,
               tipsAlign: pointBean.tipsAlign,
               tipsWidth: pointBean.tipsWidth,
+              tipsGap: pointBean.tipsGap,
               tipsSafePadding: pointBean.tipsSafePadding,
               tipsBackGroundColor: pointBean.tipsBackGroundColor,
               tipsText: pointBean.tipsText,
@@ -227,6 +229,7 @@ class _GuidePageState extends State<GuideSplashPage>
         tipsAlign: tipsPoint.tipsAlign,
         tipsWidth: tipsPoint.tipsWidth,
         tipsSafePadding: tipsPoint.tipsSafePadding,
+        tipsGap: tipsPoint.tipsGap,
         clickLiser: liserClickCallback,
       ),
     );

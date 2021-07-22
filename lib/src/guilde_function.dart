@@ -17,29 +17,39 @@ void showBeginnerGuidance(BuildContext context,
     {List<TipsPoint> TipsPointList,
       List<GlobalKeyPoint> globalKeyPointList,
       Function(bool isEnd) clickCallback}) {
-
-  ///背景透明的跳转
-  Navigator.of(context).push(PageRouteBuilder(
-    opaque: false,
-    pageBuilder: (context, animation, secondaryAnimation) {
-      ///GuideSplashPage 是引导页面具体实现
-      return GuideSplashPage(
-          globalKeyPointList:globalKeyPointList,
-          TipsPointList: TipsPointList,
-          clickCallback: clickCallback);
-    },
-    transitionsBuilder: (BuildContext context, Animation<double> animation1,
-        Animation<double> animation2, Widget child) {
-      ///  渐变过渡
-      return FadeTransition(
-        ///渐变过渡 0.0-1.0
-        opacity: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-          ///动画样式
-          parent: animation1,
-          ///动画曲线
-          curve: Curves.fastOutSlowIn,
-        ),),
-        child: child,
-      );
-    },),);
+  showDialog(context: context,
+      barrierDismissible: false,
+      useSafeArea: false,
+      useRootNavigator: true,
+      barrierColor: Color(0x00000000),
+      builder: (BuildContext context){
+        return GuideSplashPage(
+            globalKeyPointList:globalKeyPointList,
+            TipsPointList: TipsPointList,
+            clickCallback: clickCallback);
+      });
+  // ///背景透明的跳转
+  // Navigator.of(context).push(PageRouteBuilder(
+  //   opaque: false,
+  //   pageBuilder: (context, animation, secondaryAnimation) {
+  //     ///GuideSplashPage 是引导页面具体实现
+  //     return GuideSplashPage(
+  //         globalKeyPointList:globalKeyPointList,
+  //         TipsPointList: TipsPointList,
+  //         clickCallback: clickCallback);
+  //   },
+  //   transitionsBuilder: (BuildContext context, Animation<double> animation1,
+  //       Animation<double> animation2, Widget child) {
+  //     ///  渐变过渡
+  //     return FadeTransition(
+  //       ///渐变过渡 0.0-1.0
+  //       opacity: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+  //         ///动画样式
+  //         parent: animation1,
+  //         ///动画曲线
+  //         curve: Curves.fastOutSlowIn,
+  //       ),),
+  //       child: child,
+  //     );
+  //   },),);
 }
