@@ -13,43 +13,22 @@ import 'guide_page.dart';
 /// [pointX][pointY]用来设定单点指引，当 [TipsPointList] 为 null 的时候起作用
 /// [tipsTextColor] 气泡提示框的内容文字颜色
 /// [clickCallback] 点击下一步的回调事件 参数 isEnd 为true 时表示最后一页指引
+///
+
 void showBeginnerGuidance(BuildContext context,
-    {List<TipsPoint> TipsPointList,
-      List<GlobalKeyPoint> globalKeyPointList,
-      Function(bool isEnd) clickCallback}) {
-  showDialog(context: context,
+    {List<TipsPoint> tipsPointList,
+    List<GlobalKeyPoint> globalKeyPointList,
+    Function(bool isEnd) clickCallback}) {
+  showDialog(
+      context: context,
       barrierDismissible: false,
       useSafeArea: false,
-      useRootNavigator: true,
+      useRootNavigator: false,
       barrierColor: Color(0x00000000),
-      builder: (BuildContext context){
+      builder: (BuildContext context) {
         return GuideSplashPage(
-            globalKeyPointList:globalKeyPointList,
-            TipsPointList: TipsPointList,
+            globalKeyPointList: globalKeyPointList,
+            tipsPointList: tipsPointList,
             clickCallback: clickCallback);
       });
-  // ///背景透明的跳转
-  // Navigator.of(context).push(PageRouteBuilder(
-  //   opaque: false,
-  //   pageBuilder: (context, animation, secondaryAnimation) {
-  //     ///GuideSplashPage 是引导页面具体实现
-  //     return GuideSplashPage(
-  //         globalKeyPointList:globalKeyPointList,
-  //         TipsPointList: TipsPointList,
-  //         clickCallback: clickCallback);
-  //   },
-  //   transitionsBuilder: (BuildContext context, Animation<double> animation1,
-  //       Animation<double> animation2, Widget child) {
-  //     ///  渐变过渡
-  //     return FadeTransition(
-  //       ///渐变过渡 0.0-1.0
-  //       opacity: Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-  //         ///动画样式
-  //         parent: animation1,
-  //         ///动画曲线
-  //         curve: Curves.fastOutSlowIn,
-  //       ),),
-  //       child: child,
-  //     );
-  //   },),);
 }

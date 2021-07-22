@@ -48,9 +48,7 @@ class MyCustomPainter extends CustomPainter {
   ///点击区域回调
   Function(Rect rect) clickLiser;
 
-  AnimationController controller;
-
-  MyCustomPainter(this.pointX, this.pointY, this.textTip, this.controller,
+  MyCustomPainter(this.pointX, this.pointY, this.textTip,
       {
         this.pointWidth,
         this.pointHeight,
