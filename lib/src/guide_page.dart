@@ -126,10 +126,10 @@ class _GuidePageState extends State<GuideSplashPage> {
     GuideLogs.e("onTapUp 点击了 ${globalPosition.dx}  ${globalPosition.dy}");
     if (nextRect != null) {
       ///获取当前 下一步的区域
-      double left = nextRect.left - 10;
-      double right = nextRect.right + 10;
-      double bottom = nextRect.bottom + 10;
-      double top = nextRect.top - 10;
+      double left = nextRect.left;
+      double right = nextRect.right;
+      double bottom = nextRect.bottom;
+      double top = nextRect.top;
 
       ///获取当前屏幕上手指点击的位置
       double dx = globalPosition.dx;

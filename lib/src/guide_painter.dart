@@ -176,12 +176,12 @@ class MyCustomPainter extends CustomPainter {
     ///绘制下一步文本
     Offset nextOrigin = Offset(tipsOrigin.dx,tipsOrigin.dy+tipsSize.height+pading);
     drawTextFunction(tipsWidth - pading*2, nextOrigin, canvas, nextTextTip, textColor: nextTextColor, textSize: nextTextSize, textAlign: TextAlign.right, drawedCallback: (Size size){
-      ///点击区域位置记录
-      if (clickLiser != null) {
-        clickLiser(Rect.fromLTWH(nextOrigin.dx, nextOrigin.dy, size.width, size.height));
-      }
-    });
 
+    });
+    ///点击区域位置记录
+    if (clickLiser != null) {
+      clickLiser(Rect.fromLTWH(centerPoint.x - tipsWidth/2.0, centerPoint.y - tipsHeight/2.0, tipsWidth, tipsHeight));
+    }
     canvas.restore();
   }
 
