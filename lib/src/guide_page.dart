@@ -29,16 +29,15 @@ class _GuidePageState extends State<GuideSplashPage> {
   ///当前可点击的下一步
   Rect nextRect;
   int currentPointIndex = 0;
-
+  List<TipsPoint> _tipsPointList = [];
   @override
   void initState() {
     super.initState();
-
     // 监听widget渲染完成
-    // WidgetsBinding.instance.addPostFrameCallback((duration) {
-    //   ///页面初始化完成后再构建数据
-    //   controllerInitData();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((duration) {
+      ///页面初始化完成后再构建数据
+      controllerInitData();
+    });
   }
 
   void controllerInitData() {
@@ -49,7 +48,7 @@ class _GuidePageState extends State<GuideSplashPage> {
       widget.tipsPointList.add(TipsPoint(0, 0, tipsText: '--'));
     } else if (widget.globalKeyPointList != null &&
         widget.globalKeyPointList.length > 0) {
-      widget.tipsPointList = [];
+      _tipsPointList = [];
 
       ///获取当前屏幕的宽与高
       double screenWidth2 = MediaQuery.of(context).size.width;
@@ -66,7 +65,10 @@ class _GuidePageState extends State<GuideSplashPage> {
           Offset offset1 = renderBox.localToGlobal(Offset.zero);
 
           ///获取 Size
-          //获取size
+          if(!renderBox.hasSize) {
+            print('renderBox.hasSize---------->null');
+            return;
+          }
           Size size1 = renderBox.size;
 
           ///构建使用数据结构
@@ -85,7 +87,9 @@ class _GuidePageState extends State<GuideSplashPage> {
               nextText: pointBean.nextText,
               nextTextSize: pointBean.nextTextSize,
               nextTextColor: pointBean.nextTextColor);
-          widget.tipsPointList.add(tipsPoint);
+          _tipsPointList.add(tipsPoint);
+          setState(() {
+          });
           GuideLogs.e(
               "获取到的位置信息 dx ${offset1.dx}  dy  ${offset1.dy}  screenWidht $screenWidth2  screenHeight $screenHeight2 eWidth${size1.width} eHeight${size1.height}");
         } else {
@@ -97,7 +101,6 @@ class _GuidePageState extends State<GuideSplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    controllerInitData();
     double padding = (MediaQuery.of(context).size.width / 9);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -118,7 +121,7 @@ class _GuidePageState extends State<GuideSplashPage> {
 
   ///用户计算下一步的点击事件
   void onTap(BuildContext context, TapUpDetails detail) {
-    if (widget.tipsPointList == null) {
+    if (_tipsPointList == null) {
       Navigator.of(context).pop();
     }
 
@@ -136,7 +139,7 @@ class _GuidePageState extends State<GuideSplashPage> {
       double dy = globalPosition.dy;
 
       if (dx > left && dx < right && dy > top && dy < bottom) {
-        if (currentPointIndex < widget.tipsPointList.length - 1) {
+        if (currentPointIndex < _tipsPointList.length - 1) {
           ///如果当前不是最后一页面，那么取出下一页的内容信息
           setState(() {
             currentPointIndex++;
@@ -166,7 +169,7 @@ class _GuidePageState extends State<GuideSplashPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    if (widget.tipsPointList == null || widget.tipsPointList.length == 0) {
+    if (_tipsPointList == null || _tipsPointList.length == 0) {
       return Container(
         height: height,
         width: width,
@@ -175,7 +178,7 @@ class _GuidePageState extends State<GuideSplashPage> {
     }
 
     ///获取当前指引信息
-    TipsPoint tipsPoint = widget.tipsPointList[currentPointIndex];
+    TipsPoint tipsPoint = _tipsPointList[currentPointIndex];
 
     ///画布由CustomPaint小部件创建并提供
     return CustomPaint(

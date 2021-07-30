@@ -32,3 +32,7 @@ void showBeginnerGuidance(BuildContext context,
             clickCallback: clickCallback);
       });
 }
+
+void closeBeginnerGuidance(BuildContext context){
+  Navigator.of(context).pop();
+}
