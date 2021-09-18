@@ -70,7 +70,12 @@ class _GuidePageState extends State<GuideSplashPage> {
             return;
           }
           Size size1 = renderBox.size;
-
+          if (pointBean.tipsAlign == TipsAlign.bottomLeft || pointBean.tipsAlign == TipsAlign.bottomCenter || pointBean.tipsAlign == TipsAlign.bottomRight) {
+            double maxY = offset1.dy+size1.height+pointBean.tipsGap+106;
+            if(maxY>screenHeight2){
+              break;
+            }
+          }
           ///构建使用数据结构
           ///计算比例
           TipsPoint tipsPoint = TipsPoint(offset1.dx, offset1.dy,
