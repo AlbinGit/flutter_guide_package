@@ -72,7 +72,17 @@ class _GuidePageState extends State<GuideSplashPage> {
           Size size1 = renderBox.size;
           if (pointBean.tipsAlign == TipsAlign.bottomLeft || pointBean.tipsAlign == TipsAlign.bottomCenter || pointBean.tipsAlign == TipsAlign.bottomRight) {
             double maxY = offset1.dy+size1.height+pointBean.tipsGap+106;
-            if(maxY>screenHeight2){
+            if (maxY>screenHeight2){
+              break;
+            }
+          } else if (pointBean.tipsAlign == TipsAlign.centerLeft || pointBean.tipsAlign == TipsAlign.centerRight) {
+            double maxY = offset1.dy+(size1.height+106)/2.0;
+            if (maxY>screenHeight2){
+              break;
+            }
+          } else {
+            double maxY = offset1.dy+size1.height;
+            if (maxY>screenHeight2) {
               break;
             }
           }
